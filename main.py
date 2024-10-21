@@ -8,21 +8,25 @@ def mp4_to_wav(path):
 
     # Extract the audio from the video
     audio_file = video.audio
-    audio_file.write_audiofile("C:\\Users\\kkrzak\\PycharmProjects\\read_text_from_video\\wav\\audio1-en.wav")
+    audio_file.write_audiofile("wav\\robak.wav")
 
 
-mp4_to_wav("C:\\Users\\kkrzak\\PycharmProjects\\read_text_from_video\\mp4\\video-en.mp4")
+mp4_to_wav("mp4\\robak.mp4")
 
 
-def read_video(path):
-    # Load model (you can chose: tiny, base, small, medium, large)
-    model = whisper.load_model("small") # Wybierz model odpowiedni dla twojego sprzętu
+def read_video_to_txt(path):
+    # Load model (you can choose: tiny, base, small, medium, large)
+    model = whisper.load_model("small") # choose
 
     # Transcript
-    result = model.transcribe(path, language="en")
+    result = model.transcribe(path, language="pl")
 
     # Results
     print(result["text"])
+    txt = result["text"]
+    txt_file = open("text\\robak.txt", "a", encoding='utf8')
+    txt_file.write(txt)
+    txt_file.close()
 
 
-read_video("C:\\Users\\kkrzak\\Desktop\\audio1-en.wav")
+read_video_to_txt("wav\\robak.wav")
